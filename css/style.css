@@ -1,0 +1,62 @@
+/* Empty. Add your own CSS if you like */
+
+
+ .angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;    
+   }
+
+  .login_page{
+  	background-image: url('../img/fondo1.jpg');
+  	overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-size: cover;
+  }
+
+  .lt{
+  	background-color: transparent;
+  }
+.lb{
+	
+	border-width: 2px;
+    border-style: solid;
+   border-radius: 8%;
+       margin-bottom: 12px;
+       background-color: rgba(255,255,255,1);
+       
+}
+
+.btn{
+	background: rgba(238,41,48,1);;
+	color: black;
+}
+
+.bar{
+	background-color:rgba(238,41,48,1) !important; 
+	
+}
+
+.bar.bar-stable .title{
+	color: white !important;
+}
+
+.btnlist{
+	background-color:rgba(238,41,48,1) !important; 
+	    color: white !important;
+}
+
+.cb{
+	background-color: #f5454c !important;
+	color: white !important;
+}
+
