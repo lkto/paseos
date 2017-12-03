@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [])
 
+
 .controller('ListaCtrl', function($scope,$http,$rootScope,$location) {
   
    $http.get('http://holamascota.com:3000/paseos/lista ').
@@ -17,29 +18,99 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('ver_detalleCtrl', function($scope,$http,$rootScope,$location) {
+  
+  $http.get('http://holamascota.com:3000/paseos/lista ').
+      then(function(response) {
+            $scope.lista = response.data;
+            var id = $rootScope.id
+            var length =  $scope.lista.length;
+             for ( i=0; i < length; i++) {  
+                    
+                    if ($scope.lista[i]._id == id ) {
+                        
+                      
+                       $scope.datos = 
+                        [
+                          {estado:$scope.lista[i].estado, fecha_creacion:$scope.lista[i].fecha_creacion ,fecha_creacion:$scope.lista[i].fecha_creacion, nombre_paseador:$scope.lista[i].nombre_paseador, descripcion_salida:$scope.lista[i].descripcion_salida, descripcion_llegada:$scope.lista[i].descripcion_llegada, tipo_paseo:$scope.lista[i].tipo_paseo, coordenadas_salida: $scope.lista[i].coordenadas_salida },
+                          
+                        ];
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+                         console.log($scope.datos);
+                    }
+                 };          
+     })
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+      $scope.ver_mapa = function (coor){
+      $rootScope.coor = coor;
+      $location.path( "tab/ver_mapa" );
+     
+    }
+
+})
+.controller('ver_mapaCtrl', function($scope,$http,$rootScope,$location) {
+  
+ console.log($rootScope.coor);
+
+  var cordenadas = $rootScope.coor;
+  var respuesta = cordenadas.split(",");
+  latitud = respuesta[0];
+  longitud = respuesta[1];
+
+  console.log(latitud);
+  console.log(longitud);
+
+ $scope.map = {
+    center: {
+      latitude: latitud, 
+      longitude: longitud
+    }, 
+    zoom: 12,
+    options : {
+      scrollwheel: false,
+
+    },
+    control: {}
   };
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: latitud,
+      longitude: longitud
+    },
+    options: {
+      draggable: true
+    }
+  };
+
+
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+.controller('loginCtrl', function($scope,$http,$rootScope,$location) {
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+  $scope.login = function (){
+
+    var correo = document.getElementById("user").value;
+    var clave = document.getElementById("clave").value;
+    console.log(clave);
+
+ 
+
+
+var req = {
+ method: 'POST',
+ url: 'http://holamascota.com:3000/usuarios/login',
+ headers: {
+   'Content-Type': 'application/x-www-form-urlencoded'
+ },
+ data: { correo: 'prueba@gmail.com',
+        clave: 12345 }
+}
+$http(req).then(function(data){
+     console.log(data);
+     $location.path( "tab/lista" );
+});}
+  
+  
+
 });
