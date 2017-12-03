@@ -5,12 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'google-maps'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-
-    alert("Entro");
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -32,52 +30,56 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+
   // setup an abstract state for the tabs directive
-  .state('tab', {
+    .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
 
   // Each tab has its own nav history stack:
- .state('login', {
-    cache: false,
-    url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'loginCtrl'
-    })
-  .state('tab.lista', {
-    url: '/lista',
+
+  .state('tab.dash', {
+    url: '/dash',
     views: {
-      'tab-lista': {
-        templateUrl: 'templates/tab-lista.html',
-        controller: 'ListaCtrl'
+      'tab-dash': {
+        templateUrl: 'templates/tab-dash.html',
+        controller: 'DashCtrl'
       }
     }
   })
 
-  .state('tab.ver_detalle', {
-    url: '/ver_detalle',
-    views: {
-      'tab-lista': {
-        templateUrl: 'templates/ver_detalle.html',
-        controller: 'ver_detalleCtrl'
+  .state('tab.chats', {
+      url: '/chats',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/tab-chats.html',
+          controller: 'ChatsCtrl'
+        }
       }
-    }
-  })
-  .state('tab.ver_mapa', {
-    url: '/ver_mapa',
+    })
+    .state('tab.chat-detail', {
+      url: '/chats/:chatId',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/chat-detail.html',
+          controller: 'ChatDetailCtrl'
+        }
+      }
+    })
+
+  .state('tab.account', {
+    url: '/account',
     views: {
-      'tab-lista': {
-        templateUrl: 'templates/ver_mapa.html',
-        controller: 'ver_mapaCtrl'
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
       }
     }
   });
 
-
-
   // if none of the above states are matched, use this as the fallback
- $urlRouterProvider.otherwise('/tab/lista');
+  $urlRouterProvider.otherwise('/tab/dash');
 
 });
