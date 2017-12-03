@@ -1,0 +1,63 @@
+<ion-view view-title="Detalles">
+  <ion-content class="padding">
+    <div ng-repeat="datos in datos" >
+
+    <button class="button icon-left ion-map button-full btnlist" ng-click="ver_mapa(datos.coordenadas_salida)">
+       	Ver ubicacion
+	</button>
+
+    <div class="card">
+  		<div class="item item-divider cb">
+    		Nombre del paseador
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.nombre_paseador}}
+  		</div>
+
+  		<div class="item item-divider cb">
+    		Estado
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.estado}}
+  		</div>
+
+  		<div class="item item-divider cb">
+    		Tipo de paseo
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.tipo_paseo}}
+  		</div>
+
+  		<div class="item item-divider cb">
+    		Fecha de creacion
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.fecha_creacion}}
+  		</div>
+
+  		<div class="item item-divider cb">
+    		Descripcion de llegada
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.descripcion_llegada}}
+  		</div>
+
+  		<div class="item item-divider cb">
+    		Descripcion de salida
+ 		</div>
+ 		<div class="item item-text-wrap">
+   		{{datos.descripcion_salida}}
+  		</div>
+
+	</div>
+
+
+
+	
+    	
+    	
+    	
+    </div>
+
+  </ion-content>
+</ion-view>

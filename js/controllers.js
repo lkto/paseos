@@ -1,5 +1,22 @@
 angular.module('starter.controllers', [])
 
+.controller('ListaCtrl', function($scope,$http,$rootScope,$location) {
+  
+   $http.get('http://holamascota.com:3000/paseos/lista ').
+      then(function(response) {
+            $scope.lista = response.data;
+            console.log(response.data);          
+     })
+
+
+    $scope.detalles = function (id){
+      
+      $rootScope.id = id;
+      $location.path( "tab/ver_detalle" );
+    }
+
+})
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
