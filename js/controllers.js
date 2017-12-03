@@ -94,28 +94,22 @@ angular.module('starter.controllers', [])
     var clave = document.getElementById("clave").value;
     console.log(clave);
 
-     var request = $http({
-            method: "post",
-            url: "http://holamascota.com:3000/usuarios/login",
-            data: {
-                    email: correo,
-                    clave: clave
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-               
-            });
-
-            /* Check whether the HTTP Request is Successfull or not. */
-            request.then(function (data) {
-                
-                
-               console.log(data);
-               $location.path( "tab/lista" );
+ 
 
 
-            });
-  }
+var req = {
+ method: 'POST',
+ url: 'http://holamascota.com:3000/usuarios/login',
+ headers: {
+   'Content-Type': 'application/x-www-form-urlencoded'
+ },
+ data: { correo: 'prueba@gmail.com',
+        clave: 12345 }
+}
+$http(req).then(function(data){
+     console.log(data);
+     $location.path( "tab/lista" );
+});}
   
   
 
